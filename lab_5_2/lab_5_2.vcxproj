@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cFizyka.cpp" />
     <ClCompile Include="figura.cpp" />
     <ClCompile Include="kolo_i_trojkat.cpp" />
     <ClCompile Include="main.cpp" />
@@ -85,6 +86,7 @@
     <ClCompile Include="scena.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cFizyka.h" />
     <ClInclude Include="figura.h" />
     <ClInclude Include="kolo_i_trojkat.h" />
     <ClInclude Include="prostokat.h" />

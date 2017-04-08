@@ -30,6 +30,9 @@
     <ClCompile Include="kolo_i_trojkat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cFizyka.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="prostokat.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="kolo_i_trojkat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cFizyka.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
