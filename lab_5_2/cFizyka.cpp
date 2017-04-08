@@ -135,7 +135,6 @@ float CFizyka::odleglosc(float _x, float _y, float _xa, float _ya, float _xb, fl
 	return d;
 }
 
-
 float CFizyka::ZnajdzNormalna(const CFizyka& X)//znajduje normalna boku ktory jest najblizej srodka obiektu (wynikiem funkcji jest orientacja normalnej);
 {
 	float tab[4];//tablica zawierajaca odleglosci srodka obiektu od bokow, przyjmuje sie ze odbicie nastepuje od boku lezacego najblizej srodka obiektu

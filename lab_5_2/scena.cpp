@@ -178,6 +178,17 @@ void cScena::klawisz(unsigned char znak, int x, int y)
 	glutPostRedisplay();
 
 }
+
+void cScena::rysujScene(){
+	cRectangle *pr = new cRectangle;
+	pr->resize(0.6, 0.0);
+	pr->moveTo(-1.0, -1.0);
+	tab.push_back(pr);
+	cCircle *ok = new cCircle;
+	ok->resize(-0.3);
+	ok->moveTo(0.3, 1.0);
+	tab.push_back(ok);
+}
 void idle()
 {
 	scena.idle();
@@ -197,10 +208,11 @@ void cScena::inicjuj()
 	glutInitWindowSize(420, 420);
 	glutCreateWindow("Obsluga myszy");
 	//Rejestruje funkcje zdarzeñ
+	rysujScene();
 	glutDisplayFunc(::rysuj);
 	//glutReshapeFunc(ZmienRozmiarEkranu);
 	glutIdleFunc(::idle);  // podczas spoczynku
-	glutKeyboardFunc(::klawisz);
+	//glutKeyboardFunc(::klawisz);
 	glutMouseFunc(::mysz);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity(); //przechodzi do globalnego uk³adu kamery

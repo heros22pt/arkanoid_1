@@ -17,6 +17,7 @@ public:
 
 	void rysuj();
 	void klawisz(unsigned char znak, int x, int y);
+	void rysujScene();
 	void idle();
 	void mysz(int button, int state, int x, int y);
 	void inicjuj();
