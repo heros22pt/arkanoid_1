@@ -47,6 +47,7 @@ void cScena::mysz(int button, int state, int x, int y)
 			float ys = 1 - 2.0 / 420.0 *y;
 			if (tab[i]->czy_trafilo(xs, ys) == true){
 				aktywny = i;
+				cout << "bingo";
 				break;
 			}
 		} 
@@ -181,19 +182,27 @@ void cScena::klawisz(unsigned char znak, int x, int y)
 
 void cScena::rysujScene(){
 	cRectangle *pr = new cRectangle;
-	pr->resize(0.6, 0.0);
-	pr->moveTo(-1.0, -1.0);
+	pr->resize(1.9, 0.0);
+	pr->moveTo(.0, -1.0);
 	tab.push_back(pr);
 
 	cRectangle *pr2 = new cRectangle;
-	pr2->resize(0.0, 1.0);
-	pr2->moveTo(-0.3, -0.3);
+	pr2->resize(0.0, 1.6);
+	pr2->moveTo(-1.0, -.4);
 	tab.push_back(pr2);
 
+	cRectangle *pr3 = new cRectangle;
+	pr3->resize(0.0, 1.6);
+	pr3->moveTo(1.0, -.4);
+	tab.push_back(pr3);
+
 	cCircle *ok = new cCircle;
+	ok->setColor(.0, 1.0, .0);
 	ok->resize(-0.3);
 	ok->moveTo(0.3, 1.0);
 	tab.push_back(ok);
+
+	aktywny = tab.size()-1;
 }
 void idle()
 {
@@ -201,10 +210,13 @@ void idle()
 }
 void cScena::idle()
 {
-	if (aktywny >= 0){
-		tab[aktywny]->move(0.01, 0.01);
-		Sleep(50);
-	}
+		//tab[aktywny]->move(-0.001, -0.001);
+
+		//tu zaczynam wstawianie parametrow z cFizyka
+		tab[aktywny]->setPredkosc(0.1, 0.1);
+
+		Sleep(5); // przerwa na 5 ms
+		glutPostRedisplay(); //sluzy do odswierzania strony
 }
 void cScena::inicjuj()
 {
@@ -212,17 +224,19 @@ void cScena::inicjuj()
 	//Tworzy okno 320x320
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(420, 420);
-	glutCreateWindow("Obsluga myszy");
+	glutCreateWindow("Arkanoid");
 	//Rejestruje funkcje zdarzeñ
 	rysujScene();
 	glutDisplayFunc(::rysuj);
 	//glutReshapeFunc(ZmienRozmiarEkranu);
 	glutIdleFunc(::idle);  // podczas spoczynku
 	//glutKeyboardFunc(::klawisz);
-	glutMouseFunc(::mysz);
+	//glutMouseFunc(::mysz);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity(); //przechodzi do globalnego uk³adu kamery
 	glOrtho(-1.0, 1.0, -1.0, 1.0, -.1, .1);//glortho(xmin, xmax, ymin, ymax);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	glutPostRedisplay();
+
 }

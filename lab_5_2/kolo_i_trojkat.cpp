@@ -30,7 +30,7 @@ void cCircle::resize(float _r)
 	r += _r;
 }
 bool cCircle::czy_trafilo(float xs, float ys){
-	if (((fabs(xs - x))<(r)) && ((fabs(ys - y))<(r)))
+	if (((fabs(xs - x))<r) && ((fabs(ys - y))<r))
 	{
 		return true;
 	}
