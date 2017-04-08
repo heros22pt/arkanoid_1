@@ -15,7 +15,7 @@ typedef struct sGranica
 class CFizyka
 {
 protected:
-	int czas; //czas ostatniej aktualizacji
+	int czas; //czas ostatniej aktualizacjix
 	sGranica granica; //granice obiektu
 	float x, y; //polozenie srodka masy
 	float v;//predkosc
