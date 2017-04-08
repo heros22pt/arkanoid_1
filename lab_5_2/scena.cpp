@@ -204,6 +204,7 @@ void cScena::rysujScene(){
 
 	aktywny = tab.size()-1;
 }
+
 void idle()
 {
 	scena.idle();

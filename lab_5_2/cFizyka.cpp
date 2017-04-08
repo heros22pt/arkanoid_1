@@ -20,7 +20,6 @@ CFizyka::CFizyka()
 	this->widoczny = 1;
 }
 
-
 bool CFizyka::ZwracajWidoczny()
 {
 	return this->widoczny;
