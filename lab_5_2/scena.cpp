@@ -184,6 +184,12 @@ void cScena::rysujScene(){
 	pr->resize(0.6, 0.0);
 	pr->moveTo(-1.0, -1.0);
 	tab.push_back(pr);
+
+	cRectangle *pr2 = new cRectangle;
+	pr2->resize(0.0, 1.0);
+	pr2->moveTo(-0.3, -0.3);
+	tab.push_back(pr2);
+
 	cCircle *ok = new cCircle;
 	ok->resize(-0.3);
 	ok->moveTo(0.3, 1.0);
@@ -216,7 +222,7 @@ void cScena::inicjuj()
 	glutMouseFunc(::mysz);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity(); //przechodzi do globalnego uk³adu kamery
-	glOrtho(-1,1,-1,1, -.1, .1);//glortho(xmin, xmax, ymin, ymax);
+	glOrtho(-1.0, 1.0, -1.0, 1.0, -.1, .1);//glortho(xmin, xmax, ymin, ymax);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }

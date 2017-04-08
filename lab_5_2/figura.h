@@ -14,7 +14,7 @@ public:
 	cFigura();
 	//wirtual - metoda wirtualna  - kompilator szuka najbardziej potomnej klasy
 	void move(float dx, float dy); //doda wartosc
-	void moveTo(int _x, int _y); // zmieni wartos
+	void moveTo(float _x, float _y); // zmieni wartos
 
 	void rotate(int dalpha);
 	void setColor(float R, float G, float B);

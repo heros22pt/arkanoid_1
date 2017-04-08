@@ -19,7 +19,7 @@ void cFigura::rotate(int dalpha){
 	//tutaj w projekcie kaczmarka jest rysuj
 }
 
-void cFigura::moveTo(int _x, int _y){
+void cFigura::moveTo(float _x, float _y){
 	x = _x;
 	y = _y;
 	draw();
