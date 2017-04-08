@@ -1,7 +1,8 @@
 #ifndef FIGURA_H
 #define FIGURA_H
+#include "cFizyka.h"
 using namespace std;
-class cFigura
+class cFigura: public CFizyka
 {
 protected:   //chroniona
 	float x, y;

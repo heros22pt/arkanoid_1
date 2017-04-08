@@ -1,5 +1,6 @@
 #include "scena.h"
 
+#include <windows.h>
 #include <GL/freeglut_std.h>
 #include <GL/gl.h>
 #include <iostream>
@@ -7,7 +8,7 @@ using namespace std;
 
 cScena scena;  //globalny obiekt scena
 
-void przerysuj()
+void rysuj()
 {
 	scena.rysuj();
 }
@@ -48,7 +49,7 @@ void cScena::mysz(int button, int state, int x, int y)
 				aktywny = i;
 				break;
 			}
-		} // do korekty
+		} 
 	}
 
 
@@ -57,9 +58,6 @@ void cScena::mysz(int button, int state, int x, int y)
 	}
 	if (button == GLUT_RIGHT_BUTTON){
 		cout << "right button in " << x << endl;
-	}
-	if (button == GLUT_LEFT_BUTTON && x<100){
-		cout << "Hurra!! " << x << endl;
 	}
 }
 void cScena::klawisz(unsigned char znak, int x, int y)
@@ -180,6 +178,17 @@ void cScena::klawisz(unsigned char znak, int x, int y)
 	glutPostRedisplay();
 
 }
+void idle()
+{
+	scena.idle();
+}
+void cScena::idle()
+{
+	if (aktywny >= 0){
+		tab[aktywny]->move(0.01, 0.01);
+		Sleep(50);
+	}
+}
 void cScena::inicjuj()
 {
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
@@ -188,8 +197,9 @@ void cScena::inicjuj()
 	glutInitWindowSize(420, 420);
 	glutCreateWindow("Obsluga myszy");
 	//Rejestruje funkcje zdarzeñ
-	glutDisplayFunc(::przerysuj);
+	glutDisplayFunc(::rysuj);
 	//glutReshapeFunc(ZmienRozmiarEkranu);
+	glutIdleFunc(::idle);  // podczas spoczynku
 	glutKeyboardFunc(::klawisz);
 	glutMouseFunc(::mysz);
 	glMatrixMode(GL_PROJECTION);
