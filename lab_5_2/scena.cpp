@@ -1,4 +1,5 @@
 #include "scena.h"
+#include "cFizyka.h"
 
 #include <windows.h>
 #include <GL/freeglut_std.h>
@@ -211,12 +212,12 @@ void idle()
 }
 void cScena::idle()
 {
-		//tab[aktywny]->move(-0.001, -0.001);
+		//tab[aktywny]->move(-0.001, -0.001); // test poruszania sie odpowiedniego elementu
 
 		//tu zaczynam wstawianie parametrow z cFizyka
-		tab[aktywny]->setPredkosc(0.1, 0.1);
+	tab[aktywny]->Aktualizuj(GetTickCount());
 
-		Sleep(5); // przerwa na 5 ms
+	//	Sleep(5); // przerwa na 5 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
 void cScena::inicjuj()

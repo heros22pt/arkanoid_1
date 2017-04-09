@@ -5,7 +5,8 @@ using namespace std;
 class cFigura: public CFizyka
 {
 protected:   //chroniona
-	float x, y;
+	float x, y; // czy to nie jest nadpisane, skoro mam to samo w cFizyka?
+
 	int alpha; //kat obotu w stopniach
 
 	float red, green, blue;  //kolor w zakresie 0 do 1
