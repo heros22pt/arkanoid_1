@@ -9,6 +9,7 @@ using namespace std;
 cCircle::cCircle() :r(.2){
 	this->setGeometria(this->x, this->y, -this->r , -this->r , this->r , this->r );
 	this->setPredkosc(0.1, 0.1);
+	this->setFizyka(1.2, 1.2);
 }
 void cCircle::draw()
 {
