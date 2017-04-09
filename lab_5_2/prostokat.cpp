@@ -6,14 +6,14 @@
 #include<math.h>
 
 using namespace std;
-
-cRectangle::cRectangle() : a(.2), b(.2){}
+//void setGeometria(float _x, float _y, float _xa, float _ya, float _xb, float _yb);
+//cRectangle::cRectangle() : a(.2), b(.2){} //stary konstruktor 
 cRectangle::cRectangle(float _a, float _b) : a(_a), b(_b){}
-//void rysuj();
-//float obwod(){ return 1.0; };
-//float pole(){ return 1.0; };
-//void zmienRozmiar(float _a, float _b);
 
+cRectangle::cRectangle() : /*cFigura(),*/ a(.2), b(.2) //nowy konstruktor
+{
+	this->setGeometria(this->x, this->y, -this->a / 2, -this->b / 2, this->a / 2, this->b / 2); //setter dla geometria
+}
 
 void cRectangle::resize(float w, float h){
 	a = a + w;

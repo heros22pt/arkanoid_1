@@ -48,10 +48,3 @@ void cFigura::setColor(float R, float G, float B){
 	}
 }
 
-void cFigura::ustawFizyke()
-{
-	//tab[aktywny]->Aktualizuj(); //time jest potrzebny w ms
-	tab[aktywny]->UstawX(x);
-	tab[aktywny]->UstawY(y); //czy to na pewno tutaj, czy w cScena? przypisywanie obiektowi tego... 
-	tab[aktywny]->setGeometria(x, y, )
-}
