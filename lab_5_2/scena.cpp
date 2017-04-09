@@ -187,13 +187,13 @@ void cScena::rysujScene(){
 	tab.push_back(pr);
 
 	cRectangle *pr2 = new cRectangle;
-	pr2->resize(0.0, 1.6);
-	pr2->moveTo(-1.0, -.4);
+	pr2->resize(0.0, 1.3);
+	pr2->moveTo(-1.0, -.1);
 	tab.push_back(pr2);
 
 	cRectangle *pr3 = new cRectangle;
-	pr3->resize(0.0, 1.6);
-	pr3->moveTo(1.0, -.4);
+	pr3->resize(0.0, 1.3);
+	pr3->moveTo(1.0, -.1);
 	tab.push_back(pr3);
 
 	cCircle *ok = new cCircle;

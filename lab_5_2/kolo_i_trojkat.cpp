@@ -6,7 +6,10 @@
 #include<math.h>
 
 using namespace std;
-cCircle::cCircle() :r(.2){};
+cCircle::cCircle() :r(.2){
+	this->setGeometria(this->x, this->y, -this->r , -this->r , this->r , this->r );
+	this->setPredkosc(0.1, 0.1);
+}
 void cCircle::draw()
 {
 	glPushMatrix();
