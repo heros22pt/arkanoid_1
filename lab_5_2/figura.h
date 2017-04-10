@@ -5,7 +5,7 @@ using namespace std;
 class cFigura: public CFizyka
 {
 protected:   //chroniona
-	float x, y; // czy to nie jest nadpisane, skoro mam to samo w cFizyka?
+	//float x, y; // czy to nie jest nadpisane, skoro mam to samo w cFizyka?
 
 	int alpha; //kat obotu w stopniach
 

@@ -197,10 +197,13 @@ void cScena::rysujScene(){
 	pr3->moveTo(1.0, -.1);
 	tab.push_back(pr3);
 
+	//rysowanie pileczki
 	cCircle *ok = new cCircle;
 	ok->setColor(.0, 1.0, .0);
-	ok->resize(-0.3);
+	ok->resize(-0.28);
 	ok->moveTo(0.3, 1.0);
+	ok->setPredkosc(3e-2, 60);
+	ok->setFizyka(9.81*1E-7, -90);
 	tab.push_back(ok);
 
 	aktywny = tab.size()-1;
@@ -217,7 +220,7 @@ void cScena::idle()
 		//tu zaczynam wstawianie parametrow z cFizyka
 	tab[aktywny]->Aktualizuj(GetTickCount());
 
-	//	Sleep(5); // przerwa na 5 ms
+		Sleep(500); // przerwa na 5 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
 void cScena::inicjuj()

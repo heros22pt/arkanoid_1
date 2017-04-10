@@ -7,7 +7,8 @@
 
 using namespace std;
 cFigura::cFigura() :
-x(0), y(0), red(1), green(0), blue(0), alpha(0) {
+/*x(0), y(0),*/ red(1), green(0), blue(0), alpha(0) {
+	x = 0, y = 0;
 }
 void cFigura::move(float dx, float dy){
 	x += dx;

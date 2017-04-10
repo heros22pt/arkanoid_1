@@ -8,8 +8,8 @@
 using namespace std;
 cCircle::cCircle() :r(.2){
 	this->setGeometria(this->x, this->y, -this->r , -this->r , this->r , this->r );
-	this->setPredkosc(0.1, 0.1);
-	this->setFizyka(1.2, 1.2);
+	//this->setPredkosc(3e-2, 60);
+	//this->setFizyka(9.81*1E-6, -90);
 }
 void cCircle::draw()
 {
@@ -43,7 +43,7 @@ bool cCircle::czy_trafilo(float xs, float ys){
 
 
 
-
+//.....................................................................
 cTriangle::cTriangle() :a(.2), h(.2){};
 cTriangle::cTriangle(float _a, float _h):a(_a), h(_h){};
 void cTriangle::draw()
