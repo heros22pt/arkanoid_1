@@ -181,7 +181,7 @@ void cScena::klawisz(unsigned char znak, int x, int y)
 
 }
 
-void cScena::rysujScene(){
+void cScena::rysujScene(){  //moje inti ... inicjalizowanie jak w pliku....
 	cRectangle *pr = new cRectangle;
 	pr->resize(1.9, 0.0);
 	pr->moveTo(.0, -1.0);
@@ -201,8 +201,8 @@ void cScena::rysujScene(){
 	cCircle *ok = new cCircle;
 	ok->setColor(.0, 1.0, .0);
 	ok->resize(-0.28);
-	ok->moveTo(0.3, 1.0);
-	ok->setPredkosc(3e-2, 60);
+	ok->moveTo(0.0, .7);
+	ok->setPredkosc(2e-5, 60);
 	ok->setFizyka(9.81*1E-7, -90);
 	tab.push_back(ok);
 
@@ -220,7 +220,7 @@ void cScena::idle()
 		//tu zaczynam wstawianie parametrow z cFizyka
 	tab[aktywny]->Aktualizuj(GetTickCount());
 
-		Sleep(500); // przerwa na 5 ms
+		//Sleep(500); // przerwa na 5 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
 void cScena::inicjuj()
