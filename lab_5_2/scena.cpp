@@ -202,7 +202,7 @@ void cScena::rysujScene(){  //moje inti ... inicjalizowanie jak w pliku....
 	ok->setColor(.0, 1.0, .0);
 	ok->resize(-0.28);
 	ok->moveTo(0.0, .7);
-	ok->setPredkosc(2e-5, 60);
+	ok->setPredkosc(3e-4, 60);
 	ok->setFizyka(9.81*1E-7, -90);
 	tab.push_back(ok);
 
@@ -220,7 +220,7 @@ void cScena::idle()
 		//tu zaczynam wstawianie parametrow z cFizyka
 	tab[aktywny]->Aktualizuj(GetTickCount());
 
-		//Sleep(500); // przerwa na 5 ms
+		Sleep(2); // przerwa na 2 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
 void cScena::inicjuj()
