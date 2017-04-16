@@ -30,7 +30,7 @@ void cFigura::moveTo(float _x, float _y){
 void cFigura::setColor(float R, float G, float B){
 	red = red + R;
 
-	green = green + G;
+	green = green + G; 
 
 	blue = blue + B;
 

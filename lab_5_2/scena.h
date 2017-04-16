@@ -22,6 +22,7 @@ public:
 	void mysz(int button, int state, int x, int y);
 	void inicjuj();
 
+	void odbij();
 private:
 
 	int aktywny;
