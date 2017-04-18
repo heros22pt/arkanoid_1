@@ -79,6 +79,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cFizyka.cpp" />
+    <ClCompile Include="cKlocek.cpp" />
+    <ClCompile Include="cPaletka.cpp" />
     <ClCompile Include="figura.cpp" />
     <ClCompile Include="kolo_i_trojkat.cpp" />
     <ClCompile Include="main.cpp" />
@@ -87,6 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cFizyka.h" />
+    <ClInclude Include="cKlocek.h" />
+    <ClInclude Include="cPaletka.h" />
     <ClInclude Include="figura.h" />
     <ClInclude Include="kolo_i_trojkat.h" />
     <ClInclude Include="prostokat.h" />

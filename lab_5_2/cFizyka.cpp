@@ -25,7 +25,7 @@ bool CFizyka::ZwracajWidoczny()
 	return this->widoczny;
 }
 
-void CFizyka::Odbicie(float alfa_n) //odbicie od sciany charakteryzowanej za pomoca normalnej alfa_n
+void CFizyka::Odbicie(double alfa_n) //odbicie od sciany charakteryzowanej za pomoca normalnej alfa_n
 {
 	//prawo odbicia "kat padania rowny katowi odbicia (pod warunkiem, ze obiekt wnika do wnetrza)
 	if (fabs(alfa_n - alfa_v)>90.0)
@@ -55,21 +55,21 @@ void CFizyka::Aktualizuj(int czas_aktualny) //zmienia polozenie obiektu na podst
 	czas += delta_t;
 }
 
-void CFizyka::setPredkosc(float _v, float _alfa_v) //ustawia poczatkowa predkosc
+void CFizyka::setPredkosc(double _v, double _alfa_v) //ustawia poczatkowa predkosc
 {
 	v = _v;
 	alfa_v = _alfa_v;
 	Reset();
 }
 
-void CFizyka::setFizyka(float _g, float _alfa_g) //ustawia poczatkowe przyspieszenie
+void CFizyka::setFizyka(double _g, double _alfa_g) //ustawia poczatkowe przyspieszenie
 {
 	g = _g;
 	alfa_g = _alfa_g;
 	Reset();
 }
 
-void CFizyka::setGeometria(float _x, float _y, float _xa, float _ya, float _xb, float _yb)
+void CFizyka::setGeometria(double _x, double _y, double _xa, double _ya, double _xb, double _yb)
 {
 	x = _x;
 	y = _y;
@@ -111,14 +111,14 @@ int CFizyka::Kolizja(CFizyka& X) //wykrywanie kolizji z innym obiektem (funkcja 
 	return kolizja;
 }
 
-int CFizyka::IsInRect(float _x, float _y, const CFizyka& X)//wykrywa czy dany punkt (_x,_y) znajduje sie wewnatrz pewnego kwadratu
+int CFizyka::IsInRect(double _x, double _y, const CFizyka& X)//wykrywa czy dany punkt (_x,_y) znajduje sie wewnatrz pewnego kwadratu
 {
 	if (((_x < X.x + X.granica.xb) && (_x > X.x + X.granica.xa)) && ((_y < X.y + X.granica.yb) && (_y > X.y + X.granica.ya)))
 		return 1;
 	else return 0;
 }
 
-float CFizyka::odleglosc(float _x, float _y, float _xa, float _ya, float _xb, float _yb)//wyznacza odleglosc od pewnej prostej przechodzacej przez 2 punkty
+double CFizyka::odleglosc(double _x, double _y, double _xa, double _ya, double _xb, double _yb)//wyznacza odleglosc od pewnej prostej przechodzacej przez 2 punkty
 {
 	//rownanie prostej pzrechodzacej pzrez 2 punkty: y=Ax+B
 	float d;

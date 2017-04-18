@@ -181,7 +181,7 @@ void cScena::klawisz(unsigned char znak, int x, int y)
 
 }
 
-void cScena::rysujScene(){  //moje inti ... inicjalizowanie jak w pliku....
+void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 	cRectangle *pr = new cRectangle;
 	pr->resize(1.9, 0.0);
 	pr->moveTo(.0, -1.0);
@@ -197,26 +197,48 @@ void cScena::rysujScene(){  //moje inti ... inicjalizowanie jak w pliku....
 	pr3->moveTo(1.0, -.1);
 	tab.push_back(pr3);
 
+	//klocki
+	//cKlocek *kl1 = dynamic_cast<cKlocek*>(tab[tab.size() + 1]);
+	cKlocek *kl1 = new cKlocek;
+	tab.push_back(kl1);
+
+
 	//rysowanie pileczki
 	cCircle *ok = new cCircle;
 	ok->setColor(.0, 1.0, 1.0);
 	ok->resize(-0.28);
 	ok->moveTo(-.0, .7);
-	ok->setPredkosc(3e-4, 60);
-	ok->setFizyka(9.81*1E-7, -90);
+	ok->setPredkosc(3e-5, 90);
+	ok->setFizyka(9.81*1E-8, -85);
+
+	cRectangle *paletka = new cRectangle;
+	paletka->setColor(.0, 1.0, .0);
+	paletka->resize(1.0, .0);
+	paletka->moveTo(.0, -.6);
+	tab.push_back(paletka);
 	tab.push_back(ok);
 
 	aktywny = tab.size()-1;
 }
 void cScena::odbij()
 {
-	for (auto i = 0; i < tab.size()-1; i++)
+
+	for (int i = 0; i < tab.size(); i++)
 	{
-		if ((tab[aktywny]->Kolizja(*tab[i]))==1)
+		for (int k = i + 1; k < tab.size(); k++)
 		{
-			tab[aktywny]->Odbicie(30);
+			tab[i]->Kolizja(*tab[k]);
 		}
 	}
+
+
+	//for (auto i = 0; i < tab.size()-1; i++)
+	//{
+	//	if ((tab[aktywny]->Kolizja(*tab[i]))==1)
+	//	{
+	//		tab[aktywny]->Odbicie(30);
+	//	}
+	//}
 
 
 	//int a = tab[aktywny]->Kolizja;
@@ -236,7 +258,7 @@ void cScena::idle()
 		//tu zaczynam wstawianie parametrow z cFizyka
 	tab[aktywny]->Aktualizuj(GetTickCount());
 	odbij();
-		Sleep(2); // przerwa na 2 ms
+		//Sleep(2); // przerwa na 2 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
 void cScena::inicjuj()

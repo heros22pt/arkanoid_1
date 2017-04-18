@@ -7,6 +7,7 @@
 
 class cRectangle :public cFigura
 {
+
 protected:
 	float a, b;
 public:

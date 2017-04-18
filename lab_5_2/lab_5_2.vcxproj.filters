@@ -33,6 +33,12 @@
     <ClCompile Include="cFizyka.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cKlocek.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cPaletka.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="prostokat.h">
@@ -48,6 +54,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cFizyka.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cKlocek.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cPaletka.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

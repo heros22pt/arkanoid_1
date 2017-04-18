@@ -28,16 +28,16 @@ public:
 	CFizyka();
 	float ZwracajX() { return float(x); }
 	float ZwracajY() { return float(y); }
-	void UstawX(float _x) { x = (int)_x; }
-	void UstawY(float _y) { y = (int)_y; }
-	void Odbicie(float alfa_n); //odbicie od sciany charakteryzowanej za pomoca normalnej alfa_n
+	void UstawX(double _x) { x = (int)_x; }
+	void UstawY(double _y) { y = (int)_y; }
+	void Odbicie(double alfa_n); //odbicie od sciany charakteryzowanej za pomoca normalnej alfa_n
 	void Aktualizuj(int czas_aktualny);//zmienia polozenie obiektu na podstawie aktualnego czasu
-	void setPredkosc(float _v, float _alfa_v); //ustawia poczatkowa predkosc
-	void setFizyka(float _g, float _alfa_g); //ustawia poczatkowe przyspieszenie
-	void setGeometria(float _x, float _y, float _xa, float _ya, float _xb, float _yb);
+	void setPredkosc(double _v, double _alfa_v); //ustawia poczatkowa predkosc
+	void setFizyka(double _g, double _alfa_g); //ustawia poczatkowe przyspieszenie
+	void setGeometria(double _x, double _y, double _xa, double _ya, double _xb, double _yb);
 	virtual int Kolizja(CFizyka& X); //wykrywanie kolizji z innym obiektem (funkcja przekazuje 1 gdy jest kolizja 0 gdy brak)
-	int IsInRect(float _x, float _y, const CFizyka& X);//wykrywa czy dany punkt (_x,_y) znajduje sie wewnatrz pewnego kwadratu
-	float odleglosc(float _x, float _y, float _xa, float _ya, float _xb, float _yb);//wyznacza odleglosc od pewnej prostej przechodzacej przez 2 punkty
+	int IsInRect(double _x, double _y, const CFizyka& X);//wykrywa czy dany punkt (_x,_y) znajduje sie wewnatrz pewnego kwadratu
+	double odleglosc(double _x, double _y, double _xa, double _ya, double _xb, double _yb);//wyznacza odleglosc od pewnej prostej przechodzacej przez 2 punkty
 	virtual float ZnajdzNormalna(const CFizyka& X);//znajduje normalna boku ktory jest najblizej srodka obiektu (wynikiem funkcji jest orientacja normalnej);
 	void Reset(); //resetuje czas
 

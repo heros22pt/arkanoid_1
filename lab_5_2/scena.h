@@ -5,6 +5,7 @@
 #include "figura.h"
 #include "prostokat.h"
 #include "kolo_i_trojkat.h"
+#include "cKlocek.h"
 
 
 using namespace std;
@@ -23,6 +24,8 @@ public:
 	void inicjuj();
 
 	void odbij();
+
+	void zniknij();
 private:
 
 	int aktywny;
