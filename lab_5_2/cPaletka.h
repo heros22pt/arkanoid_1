@@ -5,13 +5,13 @@
 #include "cFizyka.h"
 #include "prostokat.h"
 
-class cPaletka : public cRectangle
+class cPaletka :public cRectangle
 {
 protected:
 
 
 public:
-	void przesun(int do_x);
+	void przesunDo(int do_x);
 };
 
 #endif

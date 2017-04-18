@@ -3,7 +3,7 @@
 #include<iostream>
 using namespace std;
 
-void cPaletka::przesun(int do_x)
+void cPaletka::przesunDo(int do_x)
 {
 	x = do_x;
 }

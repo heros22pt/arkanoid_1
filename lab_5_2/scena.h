@@ -6,6 +6,7 @@
 #include "prostokat.h"
 #include "kolo_i_trojkat.h"
 #include "cKlocek.h"
+#include "cPaletka.h"
 
 
 using namespace std;
@@ -20,7 +21,7 @@ public:
 	void klawisz(unsigned char znak, int x, int y);
 	void rysujScene();
 	void idle();
-	void mysz(int button, int state, int x, int y);
+	float mysz(int button, int state, int x, int y);
 	void inicjuj();
 
 	void odbij();

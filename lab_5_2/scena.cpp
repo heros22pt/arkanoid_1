@@ -39,27 +39,20 @@ cScena::cScena() : // nie wiem  do czego to na razie
 aktywny(-1) {
 }
 
-void cScena::mysz(int button, int state, int x, int y)
+float cScena::mysz(int button, int state, int x, int y)
 {
 	if (button == GLUT_LEFT_BUTTON){
-		for (int i = 0; i < tab.size(); i++)
-		{
+
 			float xs = -1 + 2.0 / 420.0*x;
 			float ys = 1 - 2.0 / 420.0 *y;
-			if (tab[i]->czy_trafilo(xs, ys) == true){
-				aktywny = i;
-				cout << "bingo";
-				break;
-			}
-		} 
-	}
+	
 
-
-	if (button == GLUT_LEFT_BUTTON){
-		cout << "left button in " << x << "  " << y << endl;
-	}
-	if (button == GLUT_RIGHT_BUTTON){
-		cout << "right button in " << x << endl;
+		return xs;
+	//if (button == GLUT_LEFT_BUTTON){
+	//	cout << "left button in " << x << "  " << y << endl;
+	//}
+	//if (button == GLUT_RIGHT_BUTTON){
+	//	cout << "right button in " << x << endl;
 	}
 }
 void cScena::klawisz(unsigned char znak, int x, int y)
@@ -258,6 +251,7 @@ void cScena::idle()
 		//tu zaczynam wstawianie parametrow z cFizyka
 	tab[aktywny]->Aktualizuj(GetTickCount());
 	odbij();
+	tab[aktywny]->przesunDo(::mysz); //dla czego funkcja przesunDo nie dziala?
 		//Sleep(2); // przerwa na 2 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
