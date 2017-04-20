@@ -251,7 +251,7 @@ void cScena::idle()
 		//tu zaczynam wstawianie parametrow z cFizyka
 	tab[aktywny]->Aktualizuj(GetTickCount());
 	odbij();
-	tab[aktywny]->przesunDo(::mysz); //dla czego funkcja przesunDo nie dziala?
+//	tab[aktywny]->przesunDo(::mysz); //dla czego funkcja przesunDo nie dziala?
 		//Sleep(2); // przerwa na 2 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
