@@ -6,7 +6,7 @@
 #include<math.h>
 
 using namespace std;
-cCircle::cCircle() :r(.2){
+cCircle::cCircle() :r(.1){
 	this->setGeometria(this->x, this->y, -this->r , -this->r , this->r , this->r );
 	//this->setPredkosc(3e-2, 60);
 	//this->setFizyka(9.81*1E-6, -90);x
@@ -32,6 +32,8 @@ void cCircle::draw()
 void cCircle::resize(float _r)
 {
 	r += _r;
+	this->setGeometria(this->x, this->y, -this->r, -this->r, this->r, this->r);
+
 }
 bool cCircle::czy_trafilo(float xs, float ys){
 	if (((fabs(xs - x))<r) && ((fabs(ys - y))<r))

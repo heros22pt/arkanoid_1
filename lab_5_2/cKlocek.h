@@ -14,6 +14,8 @@ protected:
 public:
 	cKlocek();
 	int punkty(int a);
+	void odjacOdpornosc(); //zrobiæ w ten sposob?
+	
 };
-
+// re
 #endif

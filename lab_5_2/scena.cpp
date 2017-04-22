@@ -190,8 +190,7 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 	pr3->moveTo(1.0, -.1);
 	tab.push_back(pr3);
 
-	//klocki
-	//cKlocek *kl1 = dynamic_cast<cKlocek*>(tab[tab.size() + 1]);
+	//klocko
 	cKlocek *kl1 = new cKlocek;
 	tab.push_back(kl1);
 
@@ -199,7 +198,6 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 	//rysowanie pileczki
 	cCircle *ok = new cCircle;
 	ok->setColor(.0, 1.0, 1.0);
-	ok->resize(-0.28);
 	ok->moveTo(-.0, .7);
 	ok->setPredkosc(3e-5, 90);
 	ok->setFizyka(9.81*1E-8, -85);
@@ -211,6 +209,7 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 	tab.push_back(paletka);
 	tab.push_back(ok);
 
+
 	aktywny = tab.size()-1;
 }
 void cScena::odbij()
@@ -220,25 +219,16 @@ void cScena::odbij()
 	{
 		for (int k = i + 1; k < tab.size(); k++)
 		{
-			tab[i]->Kolizja(*tab[k]);
+			if (tab[i]->Kolizja(*tab[k]))
+			{
+				//((cKlocek*)tab[k])->odjacOdpornosc();
+				cKlocek* klocek = dynamic_cast<cKlocek*>(tab[k]);
+				if (klocek != NULL){
+					klocek->odjacOdpornosc();
+				}
+			}
 		}
 	}
-
-
-	//for (auto i = 0; i < tab.size()-1; i++)
-	//{
-	//	if ((tab[aktywny]->Kolizja(*tab[i]))==1)
-	//	{
-	//		tab[aktywny]->Odbicie(30);
-	//	}
-	//}
-
-
-	//int a = tab[aktywny]->Kolizja;
-	//if (a == 1)
-	//{ 
-	//	//tab[aktywny]->setFizyka()
-	//}
 }
 void idle()
 {
@@ -252,7 +242,7 @@ void cScena::idle()
 	tab[aktywny]->Aktualizuj(GetTickCount());
 	odbij();
 //	tab[aktywny]->przesunDo(::mysz); //dla czego funkcja przesunDo nie dziala?
-		//Sleep(2); // przerwa na 2 ms
+		Sleep(1); // przerwa na 1 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
 void cScena::inicjuj()

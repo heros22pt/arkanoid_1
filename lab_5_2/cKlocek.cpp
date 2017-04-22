@@ -10,3 +10,8 @@ int cKlocek::punkty(int a)
 {
 	return 0;
 }
+
+void cKlocek::odjacOdpornosc()
+{
+	odpornosc--;
+}
