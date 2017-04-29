@@ -26,8 +26,6 @@ void cScena::rysuj()
 
 }
 
-
-
 void klawisz(unsigned char znak, int x, int y)
 {
 	scena.klawisz(znak, x, y);
@@ -41,6 +39,7 @@ void mysz(int button, int state, int x, int y) //call back to glutMouseFunction
 cScena::cScena() : // nie wiem  do czego to na razie
 aktywny(-1) {
 }
+cScena::~cScena(){}
 
 float cScena::mysz(int button, int state, int x, int y)
 {
@@ -201,6 +200,7 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 	cKlocek *kl2 = new cKlocek;
 	kl2->resize(0.0, -0.1);
 	kl2->moveTo(0.3, 0);
+	kl2->ustawWidocznosc(0);
 	tab.push_back(kl2);
 
 

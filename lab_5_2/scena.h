@@ -16,6 +16,7 @@ class cScena
 public:
 
 	cScena();
+	~cScena();
 
 	void rysuj();
 	void klawisz(unsigned char znak, int x, int y);
