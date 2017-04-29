@@ -17,10 +17,13 @@ void cScena::rysuj()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
-	for (auto f : tab)
-		f->draw();
+	for (auto f : tab){
+		if (f->ZwracajWidoczny())
+			f->draw();
+	}
 	glPopMatrix();
 	glutSwapBuffers();
+
 }
 
 
@@ -192,14 +195,20 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 
 	//klocko
 	cKlocek *kl1 = new cKlocek;
+	kl1->resize(0.0, -0.1);
 	tab.push_back(kl1);
+
+	cKlocek *kl2 = new cKlocek;
+	kl2->resize(0.0, -0.1);
+	kl2->moveTo(0.3, 0);
+	tab.push_back(kl2);
 
 
 	//rysowanie pileczki
 	cCircle *ok = new cCircle;
 	ok->setColor(.0, 1.0, 1.0);
 	ok->moveTo(-.0, .7);
-	ok->setPredkosc(3e-5, 90);
+	ok->setPredkosc(3e-5, 0);
 	ok->setFizyka(9.81*1E-8, -85);
 
 	cRectangle *paletka = new cRectangle;
@@ -218,18 +227,55 @@ void cScena::odbij()
 	for (int i = 0; i < tab.size(); i++)
 	{
 		for (int k = i + 1; k < tab.size(); k++)
-		{
+		{	
+	
 			if (tab[i]->Kolizja(*tab[k]))
-			{
-				//((cKlocek*)tab[k])->odjacOdpornosc();
+			{		
 				cKlocek* klocek = dynamic_cast<cKlocek*>(tab[k]);
-				if (klocek != NULL){
-					klocek->odjacOdpornosc();
+				if (klocek != nullptr){
+					cout << "x";
+					klocek->odjacOdpornosc();				
 				}
 			}
 		}
 	}
 }
+//void cScena::aktualizuj(){
+//	long long czas = GetTickCount(); //zwraca czas w [ms]
+//	int zniszczone = 0;
+//	for (int i = 0; i< figury.size(); i++)
+//		figury[i]->Aktualizuj(czas); //obliczanie nowych polozen
+//	//wykrywanie kolizji 
+//	for (int i = 0; i< figury.size(); i++)
+//		for (int j = i + 1; j< figury.size(); j++)
+//			if (figury[i]->Kolizja(*figury[j])) //znajduje kolizje 
+//			{
+//				cKlocek* klocek = dynamic_cast<cKlocek*>(figury[j]);
+//				if (klocek != NULL){
+//					klocek->odejmijZycie();
+//					punkty += klocek->ukryj();
+//				}
+//			}
+//
+//	if (figury[0]->Kolizja(*figury[2])){
+//		cout << "GAME OVER! GAME OVER! GAME OVER!" << endl << "Punkty: " << punkty << endl;
+//		glutDestroyWindow(1);
+//		Sleep(100000);
+//	}
+//	for (int i = 6; i < figury.size(); i++){
+//		if (figury[i]->ZwracajWidoczny() == 1)
+//			break;
+//		else
+//			zniszczone++;
+//	}
+//	if (zniszczone == 25){
+//		cout << "WYGRALES! PUNKTY: " << punkty << endl;
+//		glutDestroyWindow(1);
+//		Sleep(100000);
+//	}
+//	time = czas;
+//
+//}
 void idle()
 {
 	scena.idle();
@@ -252,7 +298,7 @@ void cScena::inicjuj()
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(420, 420);
 	glutCreateWindow("Arkanoid");
-	//Rejestruje funkcje zdarzeñ
+	//Rejestruje funkcje zdarzeñ 
 	rysujScene();
 	glutDisplayFunc(::rysuj);
 	//glutReshapeFunc(ZmienRozmiarEkranu);

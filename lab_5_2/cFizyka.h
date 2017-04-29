@@ -26,6 +26,7 @@ protected:
 
 public:
 	CFizyka();
+	~CFizyka();
 	float ZwracajX() { return float(x); }
 	float ZwracajY() { return float(y); }
 	void UstawX(double _x) { x = (int)_x; }

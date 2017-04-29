@@ -19,6 +19,7 @@ CFizyka::CFizyka()
 	Reset();
 	this->widoczny = 1;
 }
+CFizyka::~CFizyka(){}
 
 bool CFizyka::ZwracajWidoczny()
 {

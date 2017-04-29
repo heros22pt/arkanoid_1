@@ -15,6 +15,7 @@ public:
 	cKlocek();
 	int punkty(int a);
 	void odjacOdpornosc(); //zrobiæ w ten sposob?
+	void callBackOdpornosc();
 	
 };
 // re

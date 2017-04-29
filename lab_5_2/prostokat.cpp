@@ -14,6 +14,9 @@ cRectangle::cRectangle() : /*cFigura(),*/ a(.2), b(.2) //nowy konstruktor
 {
 	this->setGeometria(this->x, this->y, -this->a / 2, -this->b / 2, this->a / 2, this->b / 2); //setter dla geometria
 }
+cRectangle::~cRectangle()
+{
+}
 
 void cRectangle::resize(float w, float h){
 	a = a + w;
