@@ -10,9 +10,10 @@ protected:
 	float r;
 public:
 	cCircle();
-	void draw();
+	void draw() override;
 	void resize(float _r); // nie wiem czy nie bedzie bledu z tym... abstract class etc;
 	bool czy_trafilo(float xs, float ys);
+	bool IsActive(double x, double y) override;
 private:
 };
 
@@ -27,6 +28,7 @@ public:
 	void resize(float _a, float _h);
 
 	bool czy_trafilo(float xs, float ys); //override
+	bool IsActive(double x, double y) override;
 private:
 };
 

@@ -2,6 +2,7 @@
 #define SCENA_H_
 
 #include <vector>
+#include <GL/freeglut.h>
 #include "figura.h"
 #include "prostokat.h"
 #include "kolo_i_trojkat.h"
@@ -13,25 +14,32 @@ using namespace std;
 
 class cScena
 {
+private:
+
+	int aktywny;
+	int punkty;
+	vector<cFigura*> tab;
+
 public:
 
 	cScena();
 	~cScena();
 
+	float xmin, xmax, ymin, ymax;
 	void rysuj();
 	void klawisz(unsigned char znak, int x, int y);
 	void rysujScene();
+	void rysujKlocki();
+	void Aktualizuj();
 	void idle();
-	float mysz(int button, int state, int x, int y);
+	void mouse(int button, int state, int x, int y);
+	void MouseMove(int x, int y);
 	void inicjuj();
 
-	void odbij();
+	//void odbij();
 
-	void zniknij();
-private:
+	//void zniknij();
 
-	int aktywny;
-	vector<cFigura*> tab;
 };
 extern cScena scena;
 

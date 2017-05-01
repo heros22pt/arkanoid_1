@@ -9,13 +9,17 @@ class cKlocek : public cRectangle
 {
 protected:
 
+	int punkty;
 	int odpornosc;
+
 
 public:
 	cKlocek();
-	int punkty(int a);
-	void odjacOdpornosc(); //zrobiæ w ten sposob?
-	void ustawWidocznosc(int x);
+	int getPunkty();
+	virtual void Odbicie(float alpha);
+
+	//void odjacOdpornosc(); //zrobiæ w ten sposob?
+	//void ustawWidocznosc(int x);
 	~cKlocek();
 	
 };

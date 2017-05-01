@@ -13,8 +13,10 @@ protected:
 public:
 	cRectangle();
 	~cRectangle();
+
 	cRectangle(float _a, float _b);
 //	cRectangle::cRectangle() : cFigura();
+	bool IsActive(double x, double y);
 	void draw();
 	void resize(float _a, float _b);
 	bool czy_trafilo(float xs, float ys);

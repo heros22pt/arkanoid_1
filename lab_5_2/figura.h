@@ -24,6 +24,7 @@ public:
 	//wszystkie metody abstrakcyjne musza byc wirtualne
 	//abstrakcyjne - czyli nie moze istniec obielkt, ale moze istniec wskaznik.
 	virtual bool czy_trafilo(float, float) = 0;
+	virtual bool IsActive(double x, double y) = 0;
 
 
 	void ustawFizyke();

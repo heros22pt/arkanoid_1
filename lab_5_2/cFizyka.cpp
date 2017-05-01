@@ -26,7 +26,7 @@ bool CFizyka::ZwracajWidoczny()
 	return this->widoczny;
 }
 
-void CFizyka::Odbicie(double alfa_n) //odbicie od sciany charakteryzowanej za pomoca normalnej alfa_n
+void CFizyka::Odbicie(float alfa_n) //odbicie od sciany charakteryzowanej za pomoca normalnej alfa_n
 {
 	//prawo odbicia "kat padania rowny katowi odbicia (pod warunkiem, ze obiekt wnika do wnetrza)
 	if (fabs(alfa_n - alfa_v)>90.0)

@@ -31,7 +31,7 @@ public:
 	float ZwracajY() { return float(y); }
 	void UstawX(double _x) { x = (int)_x; }
 	void UstawY(double _y) { y = (int)_y; }
-	void Odbicie(double alfa_n); //odbicie od sciany charakteryzowanej za pomoca normalnej alfa_n
+	virtual void Odbicie(float alfa_n); //odbicie od sciany charakteryzowanej za pomoca normalnej alfa_n
 	void Aktualizuj(int czas_aktualny);//zmienia polozenie obiektu na podstawie aktualnego czasu
 	void setPredkosc(double _v, double _alfa_v); //ustawia poczatkowa predkosc
 	void setFizyka(double _g, double _alfa_g); //ustawia poczatkowe przyspieszenie

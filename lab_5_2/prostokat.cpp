@@ -25,6 +25,11 @@ void cRectangle::resize(float w, float h){
 	this->setGeometria(this->x, this->y, -this->a / 2, -this->b / 2, this->a / 2, this->b / 2);
 }
 
+bool cRectangle::IsActive(double x, double y)
+{
+	return abs(this->x - x) <= (a / 2) && abs(this->y - y) <= b / 2;
+}
+
 void cRectangle::draw()
 {
 	glPushMatrix();

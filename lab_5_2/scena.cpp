@@ -5,10 +5,16 @@
 #include <GL/freeglut_std.h>
 #include <GL/gl.h>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 cScena scena;  //globalny obiekt scena
 
+cScena::cScena() : xmin(-1.0), ymin(-1.0), xmax(1.0), ymax(1.0), aktywny(-1), punkty(0)
+{
+
+}
 void rysuj()
 {
 	scena.rysuj();
@@ -31,32 +37,13 @@ void klawisz(unsigned char znak, int x, int y)
 	scena.klawisz(znak, x, y);
 }
 
-void mysz(int button, int state, int x, int y) //call back to glutMouseFunction
-{
-	scena.mysz(button, state, x, y);
-}
+//void mysz(int button, int state, int x, int y) //call back to glutMouseFunction
+//{
+//	scena.mysz(button, state, x, y);
+//}
 
-cScena::cScena() : // nie wiem  do czego to na razie
-aktywny(-1) {
-}
 cScena::~cScena(){}
 
-float cScena::mysz(int button, int state, int x, int y)
-{
-	if (button == GLUT_LEFT_BUTTON){
-
-			float xs = -1 + 2.0 / 420.0*x;
-			float ys = 1 - 2.0 / 420.0 *y;
-	
-
-		return xs;
-	//if (button == GLUT_LEFT_BUTTON){
-	//	cout << "left button in " << x << "  " << y << endl;
-	//}
-	//if (button == GLUT_RIGHT_BUTTON){
-	//	cout << "right button in " << x << endl;
-	}
-}
 void cScena::klawisz(unsigned char znak, int x, int y)
 {
 	//std::cout << "Naciœniêto klawisz: " << znak << ", a myszka znajduje siê w pozycji: " << x << ", " << y << "(w pikselach)" << std::endl;
@@ -177,9 +164,20 @@ void cScena::klawisz(unsigned char znak, int x, int y)
 }
 
 void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
+
+	cCircle *ok = new cCircle;
+	ok->setColor(.0, 1.0, 1.0);
+	ok->moveTo(-.0, .5);
+
+	ok->setPredkosc(-3e-4, .0);
+	ok->setFizyka(9.81*1E-8, -90);
+
+	tab.push_back(ok);
+
 	cRectangle *pr = new cRectangle;
-	pr->resize(1.9, 0.0);
+	pr->resize(.3, 0.0);
 	pr->moveTo(.0, -1.0);
+	pr->setColor(.0, 0.9, 0);
 	tab.push_back(pr);
 
 	cRectangle *pr2 = new cRectangle;
@@ -192,90 +190,69 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 	pr3->moveTo(1.0, -.1);
 	tab.push_back(pr3);
 
-	//klocko
-	cKlocek *kl1 = new cKlocek;
-	kl1->resize(0.0, -0.1);
-	tab.push_back(kl1);
+	rysujKlocki();
 
-	cKlocek *kl2 = new cKlocek;
-	kl2->resize(0.0, -0.1);
-	kl2->moveTo(0.3, 0);
-	kl2->ustawWidocznosc(0);
-	tab.push_back(kl2);
-
-
-	//rysowanie pileczki
-	cCircle *ok = new cCircle;
-	ok->setColor(.0, 1.0, 1.0);
-	ok->moveTo(-.0, .7);
-	ok->setPredkosc(3e-5, 0);
-	ok->setFizyka(9.81*1E-8, -85);
-
-	cRectangle *paletka = new cRectangle;
-	paletka->setColor(.0, 1.0, .0);
-	paletka->resize(1.0, .0);
-	paletka->moveTo(.0, -.6);
-	tab.push_back(paletka);
-	tab.push_back(ok);
-
-
-	aktywny = tab.size()-1;
+	aktywny = tab.size();
 }
-void cScena::odbij()
+
+void cScena::rysujKlocki()
 {
 
+	for (float i = -.8; i <= 0.8; i += .3)
+	{
+		cKlocek *kl1 = new cKlocek();
+		kl1->resize(0.0, -0.1);
+		kl1->moveTo(i, 0.6);
+		//	kl1->ustawWidocznosc(0);
+		tab.push_back(kl1);
+	}
+
+}
+
+void cScena::Aktualizuj()
+{
+	int czas = GetTickCount();
 	for (int i = 0; i < tab.size(); i++)
 	{
-		for (int k = i + 1; k < tab.size(); k++)
-		{	
-	
-			if (tab[i]->Kolizja(*tab[k]))
-			{		
-				cKlocek* klocek = dynamic_cast<cKlocek*>(tab[k]);
-				if (klocek != nullptr){
-					cout << "x";
-					klocek->odjacOdpornosc();				
-				}
+		tab[i]->Aktualizuj(czas);
+	}
+
+	for (auto i = 1; i<tab.size(); i++)
+	{
+		if (tab[0]->Kolizja(*tab[i]))
+		{
+			//if (i == 2)
+			//{
+			//	glutLeaveMainLoop();
+			//	std::cout << "Zdobyles " << punkty << " punktow" << std::endl;
+
+			//}
+
+			cKlocek *klocek = dynamic_cast<cKlocek*>(tab[i]);
+			if (klocek != nullptr)
+			{
+				punkty += klocek->getPunkty();
 			}
+
 		}
 	}
+	//int ileWidocznych = 0;
+	//for (int i = 6; i<tab.size(); i++)
+	//{
+	//	if (tab[i]->ZwracajWidoczny())
+	//	{
+	//		ileWidocznych++;
+	//	}
+	//}
+	//if (ileWidocznych == 0)
+	//{
+	//	glutLeaveMainLoop();
+	//	std::cout << "Zdobyles " << punkty << " punktow" << std::endl;
+	//}
+
+
 }
-//void cScena::aktualizuj(){
-//	long long czas = GetTickCount(); //zwraca czas w [ms]
-//	int zniszczone = 0;
-//	for (int i = 0; i< figury.size(); i++)
-//		figury[i]->Aktualizuj(czas); //obliczanie nowych polozen
-//	//wykrywanie kolizji 
-//	for (int i = 0; i< figury.size(); i++)
-//		for (int j = i + 1; j< figury.size(); j++)
-//			if (figury[i]->Kolizja(*figury[j])) //znajduje kolizje 
-//			{
-//				cKlocek* klocek = dynamic_cast<cKlocek*>(figury[j]);
-//				if (klocek != NULL){
-//					klocek->odejmijZycie();
-//					punkty += klocek->ukryj();
-//				}
-//			}
-//
-//	if (figury[0]->Kolizja(*figury[2])){
-//		cout << "GAME OVER! GAME OVER! GAME OVER!" << endl << "Punkty: " << punkty << endl;
-//		glutDestroyWindow(1);
-//		Sleep(100000);
-//	}
-//	for (int i = 6; i < figury.size(); i++){
-//		if (figury[i]->ZwracajWidoczny() == 1)
-//			break;
-//		else
-//			zniszczone++;
-//	}
-//	if (zniszczone == 25){
-//		cout << "WYGRALES! PUNKTY: " << punkty << endl;
-//		glutDestroyWindow(1);
-//		Sleep(100000);
-//	}
-//	time = czas;
-//
-//}
+
 void idle()
 {
 	scena.idle();
@@ -285,12 +262,61 @@ void cScena::idle()
 		//tab[aktywny]->move(-0.001, -0.001); // test poruszania sie odpowiedniego elementu
 
 		//tu zaczynam wstawianie parametrow z cFizyka
-	tab[aktywny]->Aktualizuj(GetTickCount());
-	odbij();
+	//tab[aktywny]->Aktualizuj(GetTickCount());
+	scena.Aktualizuj();
+//	odbij();
 //	tab[aktywny]->przesunDo(::mysz); //dla czego funkcja przesunDo nie dziala?
-		Sleep(1); // przerwa na 1 ms
+		Sleep(5); // przerwa na 5 ms
 		glutPostRedisplay(); //sluzy do odswierzania strony
 }
+
+void MouseMoveCallback(int x, int y)
+{
+	scena.MouseMove(x, y);
+}
+
+void MouseCallback(int button, int state, int x, int y)
+{
+	scena.mouse(button, state, x, y);
+}
+
+
+void cScena::mouse(int button, int state, int x, int y)
+{
+
+
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+
+		double windowWidth = glutGet(GLUT_WINDOW_WIDTH);
+		double windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
+		//std::cout << windowWidth << std::endl;
+
+		double xU = xmin + x / windowWidth * (xmax - xmin);
+		double yU = ymax - y / windowHeight * (ymax - ymin);
+		for (auto i = 0; i < tab.size(); i++)
+		{
+			if (tab[i]->IsActive(xU, yU))
+			{
+				aktywny = i;
+				break;
+			}
+		}
+	}
+
+
+}
+
+void cScena::MouseMove(int x, int y) {
+	double windowWidth = glutGet(GLUT_WINDOW_WIDTH);
+	double windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
+	double WHratio = windowWidth / windowHeight;
+
+	double xU = WHratio*(xmin + x / windowWidth * (xmax - xmin));
+	//double yU = ymax - y / windowHeight * (ymax - ymin);
+	tab[1]->moveTo(xU, tab[1]->ZwracajY());
+}
+
 void cScena::inicjuj()
 {
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
@@ -298,13 +324,16 @@ void cScena::inicjuj()
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(420, 420);
 	glutCreateWindow("Arkanoid");
+	glClearColor(0.6, 0.2, 0.2, 1); // ustawia kolor tla
 	//Rejestruje funkcje zdarzeñ 
-	rysujScene();
+	srand(time(nullptr)); 
+	rysujScene(); //rysowanie sceny
 	glutDisplayFunc(::rysuj);
 	//glutReshapeFunc(ZmienRozmiarEkranu);
 	glutIdleFunc(::idle);  // podczas spoczynku
 	//glutKeyboardFunc(::klawisz);
-	//glutMouseFunc(::mysz);
+	//glutMouseFunc(MouseCallback);
+	glutPassiveMotionFunc(MouseMoveCallback);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity(); //przechodzi do globalnego uk³adu kamery
 	glOrtho(-1.0, 1.0, -1.0, 1.0, -.1, .1);//glortho(xmin, xmax, ymin, ymax);

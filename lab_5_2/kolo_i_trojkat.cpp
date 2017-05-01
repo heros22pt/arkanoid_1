@@ -6,7 +6,8 @@
 #include<math.h>
 
 using namespace std;
-cCircle::cCircle() :r(.1){
+cCircle::cCircle() :r(.1), cFigura()
+{
 	this->setGeometria(this->x, this->y, -this->r , -this->r , this->r , this->r );
 	//this->setPredkosc(3e-2, 60);
 	//this->setFizyka(9.81*1E-6, -90);x
@@ -43,7 +44,10 @@ bool cCircle::czy_trafilo(float xs, float ys){
 	else return false;
 }
 
-
+bool cCircle::IsActive(double x, double y)
+{
+	return pow((this->x - x), 2) + pow((this->y - y), 2) <= pow(r, 2);
+}
 
 //.....................................................................
 cTriangle::cTriangle() :a(.2), h(.2){};
@@ -72,4 +76,9 @@ bool cTriangle::czy_trafilo(float xs, float ys){
 			return true;
 		}
 		else return false;
+}
+
+bool cTriangle::IsActive(double x, double y)
+{
+	return abs(this->x - x) <= (a / 2) && abs(this->y - y) <= h / 2;
 }
