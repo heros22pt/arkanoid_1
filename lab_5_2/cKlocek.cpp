@@ -33,11 +33,13 @@ int cKlocek::getPunkty()
 //}
 
 void cKlocek::Odbicie(float alpha){
+	CFizyka::Odbicie(alpha);
+
 	this->odpornosc--;
 	if (odpornosc <= 0){
 		this->widoczny = false;
 	}
-	CFizyka::Odbicie(alpha);
+
 }
 
 //void cKlocek::ustawWidocznosc(int x){

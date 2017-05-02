@@ -27,6 +27,7 @@ public:
 	virtual bool IsActive(double x, double y) = 0;
 
 
+
 	void ustawFizyke();
 };
 

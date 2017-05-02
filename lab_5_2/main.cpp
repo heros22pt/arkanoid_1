@@ -2,12 +2,16 @@
 #include<iostream>
 #include <GL/freeglut.h>
 #include<vector>
+#include<conio.h>
 
 #include "scena.h"
 using namespace std;
 
 int main(int argc, char** argv) {
 
+	cout << "Welcome to my beta game. There are 3 types of bonuce:\n-the ball may be heavier\n-the palette may by shorter or longer";
+	cout << "\nthe ball may by smaller or bigger\n\n The blocks have 1-5 HP. ... have a nice game :) /krzysztof Marchewka... To start press whatever\n\n\n\n Sorry for bugs, but its a primary version, without securities ";
+	_getch();
 	glutInit(&argc, argv);
 	scena.inicjuj();
 	glutMainLoop();

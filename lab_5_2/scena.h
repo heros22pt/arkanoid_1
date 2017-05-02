@@ -32,8 +32,8 @@ public:
 	void rysujKlocki();
 	void Aktualizuj();
 	void idle();
-	void mouse(int button, int state, int x, int y);
 	void MouseMove(int x, int y);
+	void bonusik();
 	void inicjuj();
 
 	//void odbij();

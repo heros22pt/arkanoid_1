@@ -37,10 +37,6 @@ void klawisz(unsigned char znak, int x, int y)
 	scena.klawisz(znak, x, y);
 }
 
-//void mysz(int button, int state, int x, int y) //call back to glutMouseFunction
-//{
-//	scena.mysz(button, state, x, y);
-//}
 
 cScena::~cScena(){}
 
@@ -167,10 +163,10 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 
 	cCircle *ok = new cCircle;
 	ok->setColor(.0, 1.0, 1.0);
-	ok->moveTo(-.0, .5);
+	ok->moveTo(-.0, .0);
 
-	ok->setPredkosc(-3e-4, .0);
-	ok->setFizyka(9.81*1E-8, -90);
+	ok->setPredkosc(0.0006, -rand() % 20 - 20); //	ok->setPredkosc(3e-4, .0);
+//	ok->setFizyka(0.0000005, -90); //	ok->setFizyka(9.81*1E-8, -90);
 
 	tab.push_back(ok);
 
@@ -181,14 +177,19 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 	tab.push_back(pr);
 
 	cRectangle *pr2 = new cRectangle;
-	pr2->resize(0.0, 1.3);
-	pr2->moveTo(-1.0, -.1);
+	pr2->resize(0.0, 1.8);
+	pr2->moveTo(-1.1, -.1);
 	tab.push_back(pr2);
 
 	cRectangle *pr3 = new cRectangle;
-	pr3->resize(0.0, 1.3);
-	pr3->moveTo(1.0, -.1);
+	pr3->resize(0.0, 1.8);
+	pr3->moveTo(1.1, -.1);
 	tab.push_back(pr3);
+
+	cRectangle *sufit = new cRectangle;
+	sufit->resize(1.8, .0);
+	sufit->moveTo(.0, 1.1);
+	tab.push_back(sufit);
 
 	rysujKlocki();
 
@@ -198,6 +199,24 @@ void cScena::rysujScene()	{  //moje inti ... inicjalizowanie jak w pliku....
 void cScena::rysujKlocki()
 {
 
+	for (float i = -.8; i <= 0.8; i += .20)
+	{
+		cKlocek *kl1 = new cKlocek();
+		kl1->resize(0.0, -0.1);
+		kl1->moveTo(i, 0.8);
+		//	kl1->ustawWidocznosc(0);
+		tab.push_back(kl1);
+	}
+
+	for (float i = -.8; i <= 0.8; i += .20)
+	{
+		cKlocek *kl1 = new cKlocek();
+		kl1->resize(0.0, -0.1);
+		kl1->moveTo(i, 0.7);
+		//	kl1->ustawWidocznosc(0);
+		tab.push_back(kl1);
+	}
+
 	for (float i = -.8; i <= 0.8; i += .3)
 	{
 		cKlocek *kl1 = new cKlocek();
@@ -205,6 +224,98 @@ void cScena::rysujKlocki()
 		kl1->moveTo(i, 0.6);
 		//	kl1->ustawWidocznosc(0);
 		tab.push_back(kl1);
+	}
+	for (float i = -.8; i <= 0.8; i += .24)
+	{
+		cKlocek *kl1 = new cKlocek();
+		kl1->resize(0.0, -0.1);
+		kl1->moveTo(i, 0.4);
+		//	kl1->ustawWidocznosc(0);
+		tab.push_back(kl1);
+	}
+	for (int k = 0; k < 4; k++)
+	{
+		for (float i = -.8; i <= 0.8; i += .20)
+		{
+			cKlocek *kl1 = new cKlocek();
+			kl1->resize(0.0, -0.1);
+			kl1->moveTo(i, 0.2);
+			//	kl1->ustawWidocznosc(0);
+			tab.push_back(kl1);
+		}
+	}
+
+	
+
+}
+
+void cScena::bonusik()
+{
+	//if (rand() % 20 + 1 == 3)
+	//{
+	//	cCircle *ok = new cCircle;
+	//	ok->setColor(.0, 1.0, 1.0);
+	//	ok->moveTo(-.0, .5);
+	//	ok->setPredkosc(-3e-4, .0);
+	//	ok->setFizyka(9.81*1E-8, -90);
+	//	tab.push_back(ok);
+	//}
+
+	if (rand() % 20 + 1 == 7)
+	{
+		for (auto itr = 0; itr < tab.size(); itr++)
+		{
+			cCircle *kolko = dynamic_cast<cCircle*>(tab[itr]);
+			if (kolko != nullptr)
+			{
+				kolko->resize(-.02);
+			}
+		}
+	}
+	if (rand() % 20 + 1 == 8)
+	{
+		for (auto itr = 0; itr < tab.size(); itr++)
+		{
+			cCircle *kolko = dynamic_cast<cCircle*>(tab[itr]);
+			if (kolko != nullptr)
+			{
+				kolko->resize(+.01);
+			}
+		}
+	}
+	if (rand() % 20 + 1 == 9)
+	{
+		cRectangle *paletka = dynamic_cast<cRectangle*>(tab[1]);
+		paletka->resize(0.15, 0);
+	}
+	if (rand() % 20 + 1 == 10)
+	{
+		cRectangle *paletka = dynamic_cast<cRectangle*>(tab[1]);
+		paletka->resize(-0.15, 0);
+	}
+
+	if (rand() % 20 + 1 == 11)
+	{
+		for (auto itr = 0; itr < tab.size(); itr++)
+		{
+			cCircle *kolko = dynamic_cast<cCircle*>(tab[itr]);
+			if (kolko != nullptr)
+			{
+				kolko->setFizyka(0.0000005, -90);
+			}
+		}
+	}
+
+	if (rand() % 3 == 2)
+	{
+		for (auto itr = 0; itr < tab.size(); itr++)
+		{
+			cCircle *kolko = dynamic_cast<cCircle*>(tab[itr]);
+			if (kolko != nullptr)
+			{
+				kolko->setFizyka(0,0);
+			}
+		}
 	}
 
 }
@@ -217,23 +328,21 @@ void cScena::Aktualizuj()
 		tab[i]->Aktualizuj(czas);
 	}
 
-	for (auto i = 1; i<tab.size(); i++)
+	for (auto i = 0; i<tab.size(); i++)
 	{
-		if (tab[0]->Kolizja(*tab[i]))
+		for (int k = i + 1; k < tab.size(); k++)
 		{
-			//if (i == 2)
-			//{
-			//	glutLeaveMainLoop();
-			//	std::cout << "Zdobyles " << punkty << " punktow" << std::endl;
-
-			//}
-
-			cKlocek *klocek = dynamic_cast<cKlocek*>(tab[i]);
-			if (klocek != nullptr)
+			if (tab[i]->Kolizja(*tab[k]))
 			{
-				punkty += klocek->getPunkty();
-			}
 
+				cKlocek *klocek = dynamic_cast<cKlocek*>(tab[k]);
+				if (klocek != nullptr)
+				{
+					punkty += klocek->getPunkty();
+				bonusik();
+				}
+
+			}
 		}
 	}
 	//int ileWidocznych = 0;
@@ -275,37 +384,6 @@ void MouseMoveCallback(int x, int y)
 	scena.MouseMove(x, y);
 }
 
-void MouseCallback(int button, int state, int x, int y)
-{
-	scena.mouse(button, state, x, y);
-}
-
-
-void cScena::mouse(int button, int state, int x, int y)
-{
-
-
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-
-		double windowWidth = glutGet(GLUT_WINDOW_WIDTH);
-		double windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
-		//std::cout << windowWidth << std::endl;
-
-		double xU = xmin + x / windowWidth * (xmax - xmin);
-		double yU = ymax - y / windowHeight * (ymax - ymin);
-		for (auto i = 0; i < tab.size(); i++)
-		{
-			if (tab[i]->IsActive(xU, yU))
-			{
-				aktywny = i;
-				break;
-			}
-		}
-	}
-
-
-}
 
 void cScena::MouseMove(int x, int y) {
 	double windowWidth = glutGet(GLUT_WINDOW_WIDTH);
@@ -323,7 +401,7 @@ void cScena::inicjuj()
 	//Tworzy okno 320x320
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(420, 420);
-	glutCreateWindow("Arkanoid");
+	glutCreateWindow("Arkanoid by Krzysztof Marchewka");
 	glClearColor(0.6, 0.2, 0.2, 1); // ustawia kolor tla
 	//Rejestruje funkcje zdarzeñ 
 	srand(time(nullptr)); 
