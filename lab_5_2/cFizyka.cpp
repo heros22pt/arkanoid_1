@@ -3,7 +3,7 @@
 #include "cFizyka.h"
 //odbicie tlyko w plaszczyznie xy pamietac, najwazniejsze to jest ta kolizja!
 
-CFizyka::CFizyka()
+CFizyka::CFizyka()//..
 {
 	//obiekt staly
 	g = 0.0;
